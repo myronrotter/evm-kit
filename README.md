@@ -2,14 +2,28 @@
 
 ## Usage
 
-Populate env variables of `.env.example`.
-
 ```sh
 # Deploy WETH9 contract from bytecode
-forge script ./script/DeployWETH9FromBytecode.s.sol --rpc-url network --broadcast
+PRIVATE_KEY=0xabc123... \
+forge script ./script/DeployWETH9FromBytecode.s.sol \
+    --rpc-url https://your-rpc.io/ \
+    --broadcast
 
 # Deploy mock ERC20 token contract
-forge script ./script/DeployMockToken.s.sol --rpc-url network --broadcast
+PRIVATE_KEY=0xabc123... \
+TOKEN_NAME=MockToken \
+TOKEN_SYMBOL=MTK \
+INITIAL_SUPPLY=1000000 \
+forge script ./script/DeployMockToken.s.sol \
+    --rpc-url https://your-rpc.io/ \
+    --broadcast
+
+forge verify-contract \
+    --chain 167013 \
+    --verifier custom \
+    --verifier-url "https://api.etherscan.io/v2/api?chainid=167013&apikey=..." \
+    0xTokenAddress \
+    src/MockToken.sol:MockToken
 ```
 
 ## Example commands
