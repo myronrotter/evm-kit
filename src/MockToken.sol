@@ -10,7 +10,11 @@ contract MockToken is ERC20, Ownable {
         string memory symbol,
         uint256 initialSupply,
         address owner
-    ) ERC20(name, symbol) Ownable(owner) {
+    ) ERC20(name, symbol) Ownable() {
+        // Transfer ownership to the specified owner (v4.9.6 sets deployer as initial owner)
+        if (owner != msg.sender) {
+            _transferOwnership(owner);
+        }
         _mint(owner, initialSupply * 10 ** decimals());
     }
 
