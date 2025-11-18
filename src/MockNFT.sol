@@ -9,8 +9,8 @@ import "@openzeppelin/contracts/utils/Base64.sol";
 contract MockNFT is ERC721, Ownable {
     using Strings for uint256;
 
-    /// @notice Next token id to mint (starts at 0)
-    uint256 public nextTokenId;
+    /// @notice Next token id to mint (starts at 1)
+    uint256 public nextTokenId = 1;
 
     constructor(
         string memory name_,

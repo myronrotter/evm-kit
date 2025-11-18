@@ -19,7 +19,7 @@ contract MockNFTTest is Test {
         vm.prank(owner);
         uint256 tokenId = nft.mint(user1);
 
-        assertEq(tokenId, 0);
+        assertEq(tokenId, 1);
         assertEq(nft.ownerOf(tokenId), user1);
         assertEq(nft.balanceOf(user1), 1);
     }
